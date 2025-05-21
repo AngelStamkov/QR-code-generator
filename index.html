@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qr code</title>
+    <style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  #qr-code {
+    margin-top: 20px;
+  }
+
+  #qrImage {
+    max-width: 100%;
+    margin-top: 10px;
+  }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <input type="text" placeholder="Enter text or url" id="text">
+        <button onclick="generateQRCode()">
+            Generate QR code
+        </button>
+        <div id="qr-code">
+            <img src="" alt="QR code will appear here" id="qrImage">
+        </div>
+    </div>
+    <script>
+        function generateQRCode() {
+            const text = document.getElementById("text").value.trim();
+            const qrImage = document.getElementById("qrImage");
+
+            if (text === "") {
+                alert("Please enter some text or URL");
+                return;
+            }
+            const apiURL = `https://api.qrserver.com/v1/create-qr-code/?data=${text}&size=150x150`;
+
+            qrImage.src = apiURL;
+        }
+    </script>
+</body>
+</html>
